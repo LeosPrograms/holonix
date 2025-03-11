@@ -24,7 +24,11 @@
     holochain = {
       url = "github:maackle/holochain/raft-0.4";
       flake = false;
+      postFetch = ''
+        sed -i '/exclude = \[/,/]/d' $out/Cargo.toml
+      '';
     };
+
 
     # Lair keystore sources
     lair-keystore = {

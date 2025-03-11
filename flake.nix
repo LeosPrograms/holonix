@@ -22,7 +22,7 @@
 
     # Holochain sources
     holochain = {
-      url = "github:maackle/holochain/raft-0.4";
+      url = "github:LeosPrograms/holochain/raft-0.4";
       flake = false;
     };
 

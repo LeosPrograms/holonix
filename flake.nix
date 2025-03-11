@@ -47,20 +47,6 @@
 
   # outputs that this flake should produce
   outputs = inputs @ { self, nixpkgs, flake-parts, rust-overlay, crane, ... }:
-    let pkgs = import nixpkgs { system = "x86_64-linux"; };
-      holochainFixed = pkgs.stdenv.mkDerivation {
-        name = "holochain-fixed";
-        src = holochain;
-    
-        postPatch = ''
-          sed -i '/exclude = \[/,/]/d' Cargo.toml
-        '';
-      };
-    in
-    {
-      packages.holochain = holochainFixed;
-    };
-
     # refer to flake-parts docs https://flake.parts/
     flake-parts.lib.mkFlake { inherit inputs; }
       {

@@ -336,7 +336,7 @@
             devShells = {
               default = pkgs.mkShell {
                 packages = [
-                  holochain
+                  customHolochain
                   lair-keystore
                   hc-launch
                   hc-scaffold

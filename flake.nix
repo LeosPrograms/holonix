@@ -74,10 +74,6 @@
             # instruct crane to use Rust toolchain specified above
             craneLib = (crane.mkLib pkgs).overrideToolchain rust;
 
-            # Custom Holochain
-            cargoExtraArgs = "--features wasmer_sys,sqlite-encrypted,tx5,raft";
-            customHolochain = inputs.holochain.override { inherit cargoExtraArgs; };
-
             # Define a function to build Holochain binaries. This allows consumers to customize the
             # build by overriding function arguments.
             holochainBuilder =
@@ -311,7 +307,7 @@
             formatter = pkgs.nixpkgs-fmt;
 
             packages = {
-              inherit customHolochain;
+              inherit holochain;
               inherit lair-keystore;
               inherit hc-launch;
               inherit hc-scaffold;
@@ -336,7 +332,7 @@
             devShells = {
               default = pkgs.mkShell {
                 packages = [
-                  customHolochain
+                  holochain
                   lair-keystore
                   hc-launch
                   hc-scaffold
